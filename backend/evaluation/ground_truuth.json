@@ -1,0 +1,2489 @@
+{
+  "B1": {
+    "question": "Count all buildings in Kristiansand municipality.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 64747,
+    "accepted_answers": [
+      64747,
+      64745
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the building count for Kristiansand municipality using kommunenummer = '4204'. The current local database returns 64747, but 64745 is accepted for runs produced against the earlier teammate database/import.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning"
+      ],
+      "id_column": "bygningid",
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204"
+      },
+      "required_columns": [
+        "kommunenummer"
+      ],
+      "analytical_operations": [
+        "COUNT(*)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(*) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '4204';",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkelenbygning",
+      "verified_count_sql": "SELECT COUNT(*) AS building_count FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '4204';",
+      "verified_count_result": 64747,
+      "verified_distinct_sql": "SELECT COUNT(DISTINCT bygningid) AS count_distinct_bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '4204';",
+      "verified_distinct_result": 64747
+    }
+  },
+  "B2": {
+    "question": "Find 10 parcels in Kristiansand municipality, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "181247757",
+      "181247907",
+      "181247942",
+      "215110185",
+      "215110319",
+      "215110466",
+      "215110505",
+      "215110743",
+      "215111046",
+      "215111172"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 teigid values for Kristiansand municipality sorted by teigid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig"
+      ],
+      "id_column": "teigid",
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer"
+      ],
+      "analytical_operations": [
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT teigid FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204' ORDER BY teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkeleneiendomskartteig",
+      "verified_sql": "SELECT teigid, kommunenummer, kommunenavn FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204' ORDER BY teigid ASC LIMIT 10;",
+      "verified_count_sql": "SELECT COUNT(*) AS count_rows, COUNT(DISTINCT teigid) AS count_distinct_teigid FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204';",
+      "verified_count_result": 55136,
+      "verified_distinct_result": 55136
+    }
+  },
+  "B3": {
+    "question": "Find 10 buildings in Narvik municipality, sorted by bygningid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      "138392608",
+      "138392612",
+      "138392618",
+      "138392621",
+      "138392624",
+      "138392628",
+      "138392631",
+      "138392634",
+      "138392637",
+      "138392644"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 bygningid values for Narvik municipality sorted by bygningid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning"
+      ],
+      "id_column": "bygningid",
+      "filters": {
+        "municipality": "Narvik",
+        "kommunenummer": "1806"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer"
+      ],
+      "analytical_operations": [
+        "ORDER BY bygningid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '1806' ORDER BY bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkelenbygning",
+      "verified_sql": "SELECT bygningid, kommunenummer, kommunenavn FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '1806' ORDER BY bygningid ASC LIMIT 10;"
+    }
+  },
+  "B4": {
+    "question": "Count all parcels in Stavanger municipality.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 53040,
+    "accepted_answers": [
+      53040,
+      53052
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the parcel count for Stavanger municipality using kommunenummer = '1103'. The current local database returns 53040; 53052 is also accepted for runs produced against an earlier database/import version.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig"
+      ],
+      "id_column": "teigid",
+      "filters": {
+        "municipality": "Stavanger",
+        "kommunenummer": "1103"
+      },
+      "required_columns": [
+        "kommunenummer"
+      ],
+      "analytical_operations": [
+        "COUNT(*)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(*) FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '1103';",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkeleneiendomskartteig",
+      "verified_count_sql": "SELECT COUNT(*) AS count_rows FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '1103';",
+      "verified_count_result": 53040,
+      "verified_distinct_sql": "SELECT COUNT(DISTINCT teigid) AS count_distinct_teigid FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '1103';",
+      "verified_distinct_result": 53040
+    }
+  },
+  "B5": {
+    "question": "Count all disputed parcels in Kristiansand municipality.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 5,
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the exact disputed parcel count 5 for Kristiansand municipality.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig"
+      ],
+      "id_column": "teigid",
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "disputed_parcel": "tvist = 1"
+      },
+      "required_columns": [
+        "kommunenummer",
+        "tvist"
+      ],
+      "analytical_operations": [
+        "COUNT(*)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(*) FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204' AND tvist = 1;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkeleneiendomskartteig",
+      "verified_count_sql": "SELECT COUNT(*) AS count_rows FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204' AND tvist = 1;",
+      "verified_count_result": 5,
+      "verified_distinct_sql": "SELECT COUNT(DISTINCT teigid) AS count_distinct_teigid FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '4204' AND tvist = 1;",
+      "verified_distinct_result": 5
+    }
+  },
+  "B6": {
+    "question": "Count all buildings with status FA in Kristiansand municipality.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 8611,
+    "accepted_answers": [
+      8611,
+      8596
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the correct count for buildings with bygningsstatus = 'FA' in Kristiansand municipality using kommunenummer = '4204'. The current local database returns 8611; 8596 is also accepted for runs produced against the teammate database/import version.",
+    "database_version_answers": {
+      "sander_current_db": 8611,
+      "teammate_db": 8596
+    },
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning"
+      ],
+      "id_column": "bygningid",
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "building_status": "bygningsstatus = 'FA'"
+      },
+      "required_columns": [
+        "kommunenummer",
+        "bygningsstatus"
+      ],
+      "analytical_operations": [
+        "COUNT(*)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(*) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '4204' AND bygningsstatus = 'FA';",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkelenbygning",
+      "verified_count_result": 8611,
+      "verified_distinct_result": 8611
+    }
+  },
+  "B7": {
+    "question": "Find 10 buildings with status FA in Stavanger municipality, sorted by bygningid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      "21003870",
+      "21004884",
+      "21004888",
+      "21004918",
+      "21006936",
+      "21006955",
+      "21007059",
+      "21007712",
+      "21007921",
+      "21008785"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 bygningid values for Stavanger municipality with status FA, sorted by bygningid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning"
+      ],
+      "id_column": "bygningid",
+      "filters": {
+        "municipality": "Stavanger",
+        "kommunenummer": "1103",
+        "building_status": "bygningsstatus = 'FA'"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "bygningsstatus"
+      ],
+      "analytical_operations": [
+        "ORDER BY bygningid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '1103' AND bygningsstatus = 'FA' ORDER BY bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkelenbygning",
+      "verified_sql": "SELECT bygningid, kommunenummer, kommunenavn, bygningsstatus FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '1103' AND bygningsstatus = 'FA' ORDER BY bygningid ASC LIMIT 10;",
+      "verified_count_sql": "SELECT COUNT(*) AS count_rows, COUNT(DISTINCT bygningid) AS count_distinct_bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning WHERE kommunenummer = '1103' AND bygningsstatus = 'FA';",
+      "verified_count_result": 7165,
+      "verified_distinct_result": 7165
+    }
+  },
+  "B8": {
+    "question": "Find 10 parcels larger than 5000 m² in Drammen municipality, sorted by parcel area descending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "133800335",
+      "105885745",
+      "106041663",
+      "105895190",
+      "106076719",
+      "167426482",
+      "106039479",
+      "133804288",
+      "106129300",
+      "106122558"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact 10 teigid values for Drammen municipality where lagretberegnetareal > 5000, sorted by lagretberegnetareal descending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig"
+      ],
+      "id_column": "teigid",
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "minimum_parcel_area_m2": "lagretberegnetareal > 5000"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "lagretberegnetareal"
+      ],
+      "analytical_operations": [
+        "ORDER BY lagretberegnetareal DESC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT teigid FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '3301' AND lagretberegnetareal > 5000 ORDER BY lagretberegnetareal DESC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ]
+      },
+      "accepted_column_expression_equivalents": {
+        "lagretberegnetareal": [
+          "ST_Area(omrade)"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": "matrikkeleneiendomskartteig",
+      "verified_sql": "SELECT teigid, matrikkelnummertekst, lagretberegnetareal FROM matrikkeleneiendomskartteig_gis.teig WHERE kommunenummer = '3301' AND lagretberegnetareal > 5000 ORDER BY lagretberegnetareal DESC LIMIT 10;",
+      "verified_area_field": "lagretberegnetareal",
+      "verified_local_area_expression": "ST_Area(omrade)",
+      "verified_top10_area_values_unique": true
+    }
+  },
+  "B9": {
+    "question": "Find 10 parcels in Stavanger municipality that are located in agricultural land, sorted by teigid ascending.",
+    "status": "needs_confirmation",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "100699721",
+      "108853426",
+      "109170809",
+      "109171467",
+      "112604340",
+      "117822012",
+      "129465110",
+      "129465309",
+      "129465519",
+      "129465690"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 teigid values for Stavanger municipality that intersect agricultural land, sorted by teigid ascending. Agricultural land is defined as AR50 artype = 20.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "arealressurskart_ar50"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "arealressurskart_ar50_gis.ar50"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "ar50_geometry": "geom"
+      },
+      "filters": {
+        "municipality": "Stavanger",
+        "kommunenummer": "1103",
+        "agricultural_land": "artype = 20"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "artype",
+        "geom"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN arealressurskart_ar50_gis.ar50 a ON ST_Intersects(p.geom, a.geom) WHERE p.kommunenummer = '1103' AND a.artype = 20 ORDER BY p.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "arealressurskart_ar50"
+      ],
+      "verified_sql_logic": "Agricultural land geometries were selected from arealressurskart_ar50_gis.ar50 where artype = 20, then spatially intersected with Stavanger parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '1103'.",
+      "verified_agricultural_land_definition": "AR50 artype = 20",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 5454,
+      "verified_top10_sql": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN ar50_agricultural_land a ON ST_Intersects(p.geom, a.geom) WHERE p.kommunenummer = '1103' AND a.artype = 20 ORDER BY p.teigid ASC LIMIT 10;"
+    }
+  },
+  "B10": {
+    "question": "Find 10 parcels in Kristiansand municipality that intersect 200-year storm-surge areas, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "215679255",
+      "215680327",
+      "215680415",
+      "215680713",
+      "215680766",
+      "215680852",
+      "215680960",
+      "215681005",
+      "215681093",
+      "215681129"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct teigid values for Kristiansand municipality that intersect 200-year storm-surge areas, sorted by teigid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "stormflomhavniva"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "storm_surge_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "storm_surge_area": "200-year storm-surge areas",
+        "storm_surge_table": "stormflo200ar_klimaarna"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s ON ST_Intersects(p.geom, s.omrade) WHERE p.kommunenummer = '4204' ORDER BY p.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "stormflomhavniva"
+      ],
+      "verified_sql_logic": "Parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '4204' were spatially intersected with 200-year storm-surge areas from stormflo200ar_klimaarna.",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_count_result": 9067,
+      "verified_top10_sql": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN stormflo200ar_klimaarna s ON ST_Intersects(p.geom, s.omrade) WHERE p.kommunenummer = '4204' ORDER BY p.teigid ASC LIMIT 10;"
+    }
+  },
+  "B11": {
+    "question": "Find 10 parcels in Trondheim municipality that intersect quick-clay hazard areas, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "166069788",
+      "166070119",
+      "166072675",
+      "166072723",
+      "166073014",
+      "166073092",
+      "166074379",
+      "166074513",
+      "166074587",
+      "166074831"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct teigid values for Trondheim municipality that intersect quick-clay release zones, sorted by teigid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "quick_clay_hazard_area": "utlosningomr"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON ST_Intersects(p.geom, k.omrade) WHERE p.kommunenummer = '5001' ORDER BY p.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '5001' were spatially intersected with quick-clay release zones from kvikkleire.utlosningomr.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 7561
+    }
+  },
+  "B12": {
+    "question": "Find 10 parcels in Drammen municipality larger than 5000 m² that intersect 200-year flood zones, sorted by parcel area descending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "106202146",
+      "106203707",
+      "134062158",
+      "105862113",
+      "106202092",
+      "106114720",
+      "106198843",
+      "105831878",
+      "105994587",
+      "6504227478"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact 10 distinct teigid values for Drammen municipality where lagretberegnetareal > 5000 and the parcel intersects 200-year flood zones, sorted by lagretberegnetareal descending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "minimum_parcel_area_m2": "lagretberegnetareal > 5000",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "lagretberegnetareal",
+        "geom",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY lagretberegnetareal DESC",
+        "LIMIT 10"
+      ],
+      "crs_handling": "Spatial intersection must use compatible CRS. The reviewer method used ST_Transform(..., always_xy := TRUE) before intersecting parcel geometry with flomareal geometry.",
+      "expected_sql_logic": "SELECT DISTINCT p.teigid, p.lagretberegnetareal FROM matrikkeleneiendomskartteig_gis.teig p JOIN flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f ON ST_Intersects(p.geom, f.omrade) WHERE p.kommunenummer = '3301' AND p.lagretberegnetareal > 5000 AND f.gjentaksintervall = 200 ORDER BY p.lagretberegnetareal DESC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      },
+      "accepted_column_expression_equivalents": {
+        "lagretberegnetareal": [
+          "ST_Area(omrade)"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Drammen parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '3301' and lagretberegnetareal > 5000 were spatially intersected with 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200.",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_area_field": "lagretberegnetareal",
+      "verified_local_area_expression": "ST_Area(omrade)",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 341
+    }
+  },
+  "B13": {
+    "question": "Count all buildings in Narvik municipality that intersect snow-avalanche hazard areas.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 6629,
+    "accepted_answers": [
+      6629,
+      6630
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the count of distinct buildings in Narvik municipality that intersect snow-avalanche hazard areas. The current local database returns 6629; 6630 is also accepted for runs produced against an earlier database/import version.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "snoskredaktsomhetskart"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "snoskredaktsomhetskart_ca17d51d1f444cbb8162d762cf551cbe.potensieltskredfareomr"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "snow_avalanche_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Narvik",
+        "kommunenummer": "1806",
+        "snow_avalanche_hazard_area": "potensieltskredfareomr"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "COUNT(DISTINCT bygningid)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN snoskredaktsomhetskart_ca17d51d1f444cbb8162d762cf551cbe.potensieltskredfareomr s ON ST_Intersects(b.representasjonspunkt, s.omrade) WHERE b.kommunenummer = '1806';",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "snoskredaktsomhetskart"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer = '1806' were spatially intersected with snow-avalanche hazard areas from snoskredaktsomhetskart.potensieltskredfareomr.",
+      "verified_snow_avalanche_layer": "potensieltskredfareomr",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_sql": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN tmp_snow_avalanche s ON ST_Intersects(b.representasjonspunkt, s.geom) WHERE b.kommunenummer = '1806' AND b.representasjonspunkt IS NOT NULL;",
+      "verified_count_result": 6629,
+      "verified_accepted_previous_result": 6630
+    }
+  },
+  "B14": {
+    "question": "Count all buildings in Drammen municipality that intersect 200-year flood zones.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 1247,
+    "accepted_answers": [
+      1247,
+      1249,
+      1257
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the count of distinct buildings in Drammen municipality that intersect 200-year flood zones. Accepted count values are 1247, 1249, and 1257 for observed database/import versions.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "COUNT(DISTINCT bygningid)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f ON ST_Intersects(b.representasjonspunkt, f.omrade) WHERE b.kommunenummer = '3301' AND f.gjentaksintervall = 200;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer = '3301' were spatially intersected with 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200.",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_sql": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN tmp_flood200 f ON ST_Intersects(b.representasjonspunkt, f.geom) WHERE b.kommunenummer = '3301' AND b.representasjonspunkt IS NOT NULL;",
+      "verified_count_result": 1247,
+      "verified_accepted_previous_result": 1249
+    }
+  },
+  "B15": {
+    "question": "Find 10 parcels in Drammen municipality that intersect 200-year flood zones, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "104682998",
+      "105831878",
+      "105832341",
+      "105832582",
+      "105832831",
+      "105833689",
+      "105833949",
+      "105833985",
+      "105835273",
+      "105835342"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct teigid values for Drammen municipality that intersect 200-year flood zones, sorted by teigid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f ON ST_Intersects(p.geom, f.omrade) WHERE p.kommunenummer = '3301' AND f.gjentaksintervall = 200 ORDER BY p.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Drammen parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '3301' were spatially intersected with 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. The reviewer method used EXISTS to avoid duplicates, which is equivalent to using DISTINCT teigid in the spatial-join result.",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 1905
+    }
+  },
+  "B16": {
+    "question": "Count all buildings in Kristiansand municipality that intersect 200-year storm-surge areas.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 939,
+    "accepted_answers": [
+      939,
+      937,
+      938
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the count of distinct buildings in Kristiansand municipality that intersect 200-year storm-surge areas after transforming storm-surge geometry to the building CRS when needed. Accepted count values are 939, 938, and 937 for observed database/import versions.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "stormflomhavniva"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "storm_surge_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "storm_surge_area": "stormflo200ar_klimaarna"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "COUNT(DISTINCT bygningid)"
+      ],
+      "crs_handling": "Building geometry uses SRID 25833 and storm-surge geometry uses SRID 25832 in the current local database. Storm-surge geometry must be transformed to SRID 25833 before intersection.",
+      "expected_sql_logic": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s ON ST_Intersects(b.representasjonspunkt, ST_Transform(s.omrade, 25833)) WHERE b.kommunenummer = '4204';",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "stormflomhavniva"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer = '4204' were spatially intersected with 200-year storm-surge areas from stormflomhavniva.stormflo200ar_klimaarna. In the current local database, storm-surge geometry was transformed from SRID 25832 to SRID 25833 before intersection with building representasjonspunkt.",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_crs": {
+        "building_srid": 25833,
+        "storm_surge_srid": 25832,
+        "transform_applied": "ST_Transform(omrade, 25833)"
+      },
+      "verified_count_sql": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN tmp_stormflo200 s ON ST_Intersects(b.representasjonspunkt, s.geom) WHERE b.kommunenummer = '4204' AND b.representasjonspunkt IS NOT NULL;",
+      "verified_count_result": 939,
+      "verified_accepted_local_result": 938,
+      "verified_accepted_previous_result": 937
+    }
+  },
+  "B17": {
+    "question": "Count all buildings in Trondheim municipality that intersect quick-clay hazard areas.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 9968,
+    "accepted_answers": [
+      9968,
+      9982,
+      9965
+    ],
+    "order_matters": false,
+    "semantic_correctness_rule": "Model must return the count of distinct buildings in Trondheim municipality that intersect quick-clay release zones. Accepted count values are 9968, 9982, and 9965 for observed database/import versions.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "quick_clay_hazard_area": "utlosningomr"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "COUNT(DISTINCT bygningid)"
+      ],
+      "expected_sql_logic": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON ST_Intersects(b.representasjonspunkt, k.omrade) WHERE b.kommunenummer = '5001';",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer = '5001' were spatially intersected with quick-clay release zones from kvikkleire.utlosningomr.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_sql": "SELECT COUNT(DISTINCT b.bygningid) FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN tmp_quick_clay_utlosning k ON ST_Intersects(b.representasjonspunkt, k.geom) WHERE b.kommunenummer = '5001' AND b.representasjonspunkt IS NOT NULL;",
+      "verified_count_result": 9968,
+      "verified_accepted_previous_result": 9982
+    }
+  },
+  "B18": {
+    "question": "Count all 1 km grid cells in Kristiansand municipality that intersect 200-year storm-surge areas.",
+    "status": "active",
+    "answer_type": "count",
+    "canonical_answer": 168,
+    "order_matters": false,
+    "database_version_sensitive": true,
+    "semantic_correctness_rule": "Model must return the count of distinct 1 km grid cells in Kristiansand municipality that intersect 200-year storm-surge areas using the current local database. The current local database uses befolkningparuter1km and returns 168.",
+    "layer2_requirements": {
+      "databases": [
+        "statistiskrutenett1km",
+        "kommuner",
+        "stormflomhavniva"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km",
+        "kommuner_627ee106072240e99d2b21ec4717bf01.kommune",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna"
+      ],
+      "id_column": "ssbid1000m",
+      "geometry_columns": {
+        "grid_geometry": "omrade",
+        "municipality_geometry": "omrade",
+        "storm_surge_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "storm_surge_area": "stormflo200ar_klimaarna"
+      },
+      "required_columns": [
+        "ssbid1000m",
+        "omrade",
+        "kommunenummer"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "COUNT(DISTINCT ssbid1000m)"
+      ],
+      "crs_handling": "Grid geometry and municipality geometry use SRID 25833. Storm-surge geometry uses SRID 25832 in the current local database and must be transformed to SRID 25833 before intersection.",
+      "expected_sql_logic": "SELECT COUNT(DISTINCT g.ssbid1000m) FROM befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km g JOIN kommuner_627ee106072240e99d2b21ec4717bf01.kommune k ON ST_Intersects(g.omrade, k.omrade) JOIN stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s ON ST_Intersects(g.omrade, ST_Transform(s.omrade, 25833)) WHERE k.kommunenummer = '4204';",
+      "accepted_table_equivalents": {
+        "befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km": [
+          "public.statistiskrutenett1km"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "grid_geometry": [
+          "geom"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "statistiskrutenett1km",
+        "kommuner",
+        "stormflomhavniva"
+      ],
+      "verified_sql_logic": "1 km grid cells from befolkningparuter1km were spatially intersected with Kristiansand municipality boundary and 200-year storm-surge areas. In the current local database, storm-surge geometry was transformed from SRID 25832 to SRID 25833 before intersection.",
+      "verified_grid_layer": "befolkningparuter1km",
+      "verified_grid_id_column": "ssbid1000m",
+      "verified_municipality_layer": "kommune",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_crs": {
+        "grid_srid": 25833,
+        "municipality_srid": 25833,
+        "storm_surge_srid": 25832,
+        "transform_applied": "ST_Transform(omrade, 25833)"
+      },
+      "verified_count_result": 168
+    }
+  },
+  "B19": {
+    "question": "Find 10 buildings in Drammen municipality that intersect 200-year flood zones and have status FA, sorted by bygningid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      "105706882",
+      "105712285",
+      "105728344",
+      "105733812",
+      "105733814",
+      "105735061",
+      "105735110",
+      "105737129",
+      "105737333",
+      "105741323"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct bygningid values for Drammen municipality where bygningsstatus = 'FA' and the building intersects 200-year flood zones, sorted by bygningid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "building_status": "bygningsstatus = 'FA'",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "bygningsstatus",
+        "representasjonspunkt",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT bygningid",
+        "ORDER BY bygningid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT b.bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f ON ST_Intersects(b.representasjonspunkt, f.omrade) WHERE b.kommunenummer = '3301' AND b.bygningsstatus = 'FA' AND f.gjentaksintervall = 200 ORDER BY b.bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Drammen buildings from matrikkelenbygning.bygning where kommunenummer = '3301' and bygningsstatus = 'FA' were spatially intersected with 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. In the local setup, flood geometries were loaded into a temporary table in the building database before running the equivalent spatial join.",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_building_status": "bygningsstatus = 'FA'",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 185
+    }
+  },
+  "B20": {
+    "question": "Find 10 buildings in Trondheim municipality that intersect quick-clay hazard areas with high risk class, sorted by bygningid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      "276508149",
+      "276578245",
+      "276578406",
+      "276610505",
+      "276618603",
+      "276619868",
+      "276656728",
+      "276674415",
+      "276691675",
+      "276702966"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct bygningid values for Trondheim municipality that intersect quick-clay release zones with high risk class, sorted by bygningid ascending. High risk class is defined as skredrisikokvikkleireklasse = 5.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "quick_clay_hazard_area": "utlosningomr",
+        "high_risk_class": "skredrisikokvikkleireklasse = 5"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade",
+        "skredrisikokvikkleireklasse"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT bygningid",
+        "ORDER BY bygningid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT b.bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON ST_Intersects(b.representasjonspunkt, k.omrade) WHERE b.kommunenummer = '5001' AND k.skredrisikokvikkleireklasse = '5' ORDER BY b.bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Trondheim buildings from matrikkelenbygning.bygning where kommunenummer = '5001' were spatially intersected with quick-clay release zones from kvikkleire.utlosningomr where skredrisikokvikkleireklasse = 5.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_high_risk_class": "skredrisikokvikkleireklasse = 5",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 76
+    }
+  },
+  "B21": {
+    "question": "Find 10 parcels in Trondheim municipality that intersect quick-clay hazard areas with high risk class, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "278628015",
+      "278628249",
+      "278628382",
+      "278628397",
+      "278628409",
+      "278628419",
+      "278628594",
+      "278629651",
+      "278629878",
+      "278630098"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct teigid values for Trondheim municipality that intersect quick-clay release zones with high risk class, sorted by teigid ascending. High risk class is defined as skredrisikokvikkleireklasse = 5.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "quick_clay_hazard_area": "utlosningomr",
+        "high_risk_class": "skredrisikokvikkleireklasse = 5"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade",
+        "skredrisikokvikkleireklasse"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "DISTINCT teigid",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT p.teigid FROM matrikkeleneiendomskartteig_gis.teig p JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON ST_Intersects(p.geom, k.omrade) WHERE p.kommunenummer = '5001' AND k.skredrisikokvikkleireklasse = '5' ORDER BY p.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Trondheim parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '5001' were spatially intersected with quick-clay release zones from kvikkleire.utlosningomr where skredrisikokvikkleireklasse = 5. The local setup used a temporary table for the quick-clay geometries before running the equivalent spatial join.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_high_risk_class": "skredrisikokvikkleireklasse = 5",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_result": 74
+    }
+  },
+  "B22": {
+    "question": "Find 10 buildings in Kristiansand municipality within 50 metres of 200-year storm-surge areas, sorted by shortest distance first, and report both municipality and county.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      {
+        "bygningid": "215547829",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215548617",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215548710",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215548817",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215550815",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215551717",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215551799",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215551915",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215552728",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      },
+      {
+        "bygningid": "215552740",
+        "municipality": "KRISTIANSAND",
+        "county": "Agder",
+        "distance_m": 0.0
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 building records for Kristiansand municipality within 50 metres of 200-year storm-surge areas, sorted by shortest distance ascending and then bygningid ascending. Each returned record must include bygningid, municipality, county, and distance. In the verified result, all top 10 distances are 0.0 metres, so bygningid ascending is the tie-breaker. County is expected as Agder for Kristiansand.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "stormflomhavniva"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "storm_surge_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "county": "Agder",
+        "storm_surge_area": "stormflo200ar_klimaarna",
+        "distance_threshold_m": "50"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "kommunenavn",
+        "representasjonspunkt",
+        "omrade"
+      ],
+      "spatial_operation": "ST_DWithin and ST_Distance",
+      "analytical_operations": [
+        "ST_DWithin(building_geometry, storm_surge_geometry, 50)",
+        "MIN(ST_Distance(building_geometry, storm_surge_geometry))",
+        "GROUP BY bygningid, kommunenavn",
+        "ORDER BY distance ASC, bygningid ASC",
+        "LIMIT 10",
+        "Report county as Agder"
+      ],
+      "crs_handling": "Building geometry uses SRID 25833 and storm-surge geometry uses SRID 25832 in the current local database. Storm-surge geometry must be transformed to SRID 25833 before distance and within-distance operations.",
+      "expected_sql_logic": "SELECT b.bygningid, b.kommunenavn, 'Agder' AS fylkesnavn, MIN(ST_Distance(b.representasjonspunkt, ST_Transform(s.omrade, 25833))) AS dist_m FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s ON ST_DWithin(b.representasjonspunkt, ST_Transform(s.omrade, 25833), 50) WHERE b.kommunenummer = '4204' GROUP BY b.bygningid, b.kommunenavn ORDER BY dist_m ASC, b.bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "stormflomhavniva"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer = '4204' were matched against 200-year storm-surge areas from stormflomhavniva.stormflo200ar_klimaarna using ST_DWithin with a 50 metre threshold. The shortest distance was calculated with MIN(ST_Distance(...)), and results were sorted by distance ascending and bygningid ascending. In the local setup, storm-surge geometries were transformed from SRID 25832 to SRID 25833 before distance operations. County was reported as the expected constant Agder for Kristiansand.",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_distance_threshold_m": 50,
+      "verified_spatial_predicate": "ST_DWithin",
+      "verified_distance_operation": "MIN(ST_Distance(...))",
+      "verified_sort_order": "distance ASC, bygningid ASC",
+      "verified_county_reporting": "Agder was reported as the expected county for Kristiansand, not derived through a separate fylker table in the local verification query.",
+      "verified_crs": {
+        "building_srid": 25833,
+        "storm_surge_srid": 25832,
+        "transform_applied": "ST_Transform(omrade, 25833)"
+      },
+      "verified_count_result": 9011
+    }
+  },
+  "B23": {
+    "question": "Find 10 parcels in Kristiansand municipality that intersect both 200-year storm-surge areas and 200-year flood zones, sorted by teigid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "teigid",
+    "canonical_answer": [
+      "215679255",
+      "215680327",
+      "215684491",
+      "215685090",
+      "215685216",
+      "215685678",
+      "215685712",
+      "215686359",
+      "215686422",
+      "215686463"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct teigid values for Kristiansand municipality that intersect both 200-year storm-surge areas and 200-year flood zones, sorted by teigid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "stormflomhavniva",
+        "flomsoner"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "storm_surge_geometry": "omrade",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "storm_surge_area": "stormflo200ar_klimaarna",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "EXISTS storm-surge intersection",
+        "EXISTS 200-year flood-zone intersection",
+        "ORDER BY teigid ASC",
+        "LIMIT 10"
+      ],
+      "crs_handling": "Parcel geometry uses SRID 25833 and storm-surge geometry uses SRID 25832 in the current local database. Storm-surge geometry must be transformed to SRID 25833 before intersection. Flood-zone geometry is used in the compatible local CRS.",
+      "expected_sql_logic": "SELECT t.teigid FROM matrikkeleneiendomskartteig_gis.teig t WHERE t.kommunenummer = '4204' AND EXISTS (SELECT 1 FROM stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s WHERE ST_Intersects(t.geom, ST_Transform(s.omrade, 25833))) AND EXISTS (SELECT 1 FROM flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f WHERE f.gjentaksintervall = 200 AND ST_Intersects(t.geom, f.omrade)) ORDER BY t.teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "stormflomhavniva",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Kristiansand parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '4204' were filtered to parcels that intersect both 200-year storm-surge areas from stormflomhavniva.stormflo200ar_klimaarna and 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. EXISTS was used for both spatial conditions to avoid duplicate teigid values when parcels intersect multiple polygons.",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_deduplication_method": "EXISTS conditions / distinct parcel membership",
+      "verified_sort_order": "teigid ASC",
+      "verified_crs": {
+        "parcel_srid": 25833,
+        "storm_surge_srid": 25832,
+        "storm_surge_transform_applied": "ST_Transform(omrade, 25833)"
+      },
+      "verified_count_result": 723
+    }
+  },
+  "B24": {
+    "question": "Find 10 parcels in Trondheim municipality larger than 5000 m² that intersect quick-clay hazard areas with high risk class, sorted by parcel area descending, and report both municipality and county.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "teigid",
+    "canonical_answer": [
+      {
+        "teigid": "278628015",
+        "matrikkelnummertekst": "172/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 1009177.0
+      },
+      {
+        "teigid": "278629878",
+        "matrikkelnummertekst": "174/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 321076.2
+      },
+      {
+        "teigid": "278628594",
+        "matrikkelnummertekst": "173/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 301485.0
+      },
+      {
+        "teigid": "506342262",
+        "matrikkelnummertekst": "173/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 214363.8
+      },
+      {
+        "teigid": "278798335",
+        "matrikkelnummertekst": "215/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 186304.1
+      },
+      {
+        "teigid": "278799693",
+        "matrikkelnummertekst": "216/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 151724.4
+      },
+      {
+        "teigid": "552823860",
+        "matrikkelnummertekst": "179/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 148757.6
+      },
+      {
+        "teigid": "278662762",
+        "matrikkelnummertekst": "178/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 129270.1
+      },
+      {
+        "teigid": "278799122",
+        "matrikkelnummertekst": "215/3",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 119476.2
+      },
+      {
+        "teigid": "278798646",
+        "matrikkelnummertekst": "215/1",
+        "municipality": "TRONDHEIM",
+        "county": "Trøndelag",
+        "area_m2": 116187.9
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct parcel records for Trondheim municipality where lagretberegnetareal > 5000 and the parcel intersects quick-clay release zones with high risk class, sorted by lagretberegnetareal descending. Each record should include teigid, municipality, county, and parcel area. High risk class is defined as skredrisikokvikkleireklasse = 5.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "county": "Trøndelag",
+        "minimum_parcel_area_m2": "lagretberegnetareal > 5000",
+        "quick_clay_hazard_area": "utlosningomr",
+        "high_risk_class": "skredrisikokvikkleireklasse = 5"
+      },
+      "required_columns": [
+        "teigid",
+        "matrikkelnummertekst",
+        "kommunenummer",
+        "kommunenavn",
+        "lagretberegnetareal",
+        "geom",
+        "omrade",
+        "skredrisikokvikkleireklasse"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "EXISTS quick-clay intersection",
+        "DISTINCT teigid",
+        "ORDER BY lagretberegnetareal DESC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "SELECT DISTINCT t.teigid, t.matrikkelnummertekst, t.kommunenavn, 'Trøndelag' AS fylkesnavn, t.lagretberegnetareal FROM matrikkeleneiendomskartteig_gis.teig t WHERE t.kommunenummer = '5001' AND t.lagretberegnetareal > 5000 AND t.geom IS NOT NULL AND EXISTS (SELECT 1 FROM kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k WHERE k.skredrisikokvikkleireklasse = '5' AND ST_Intersects(t.geom, k.omrade)) ORDER BY t.lagretberegnetareal DESC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      },
+      "accepted_column_expression_equivalents": {
+        "lagretberegnetareal": [
+          "ST_Area(omrade)"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Trondheim parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '5001' and lagretberegnetareal > 5000 were filtered to parcels that intersect quick-clay release zones from kvikkleire.utlosningomr where skredrisikokvikkleireklasse = 5. EXISTS was used to avoid duplicate teigid values when parcels intersect multiple polygons. Results were sorted by lagretberegnetareal descending.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_high_risk_class": "skredrisikokvikkleireklasse = 5",
+      "verified_area_field": "lagretberegnetareal",
+      "verified_local_area_expression": "ST_Area(omrade)",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_deduplication_method": "EXISTS conditions / distinct parcel membership",
+      "verified_sort_order": "lagretberegnetareal DESC",
+      "verified_count_result": 41
+    }
+  },
+  "B25": {
+    "question": "Find 10 buildings in Kristiansand municipality that intersect both 200-year storm-surge areas and 200-year flood zones, sorted by bygningid ascending.",
+    "status": "active",
+    "answer_type": "top_k_ids",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      "215556033",
+      "215558279",
+      "215558506",
+      "215558509",
+      "215558512",
+      "215564060",
+      "215568539",
+      "215578162",
+      "215595739",
+      "215607930"
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 distinct bygningid values for Kristiansand municipality that intersect both 200-year storm-surge areas and 200-year flood zones, sorted by bygningid ascending.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "stormflomhavniva",
+        "flomsoner"
+      ],
+      "accepted_database_equivalents": {
+        "stormflomhavniva": [
+          "stormflohavniva"
+        ]
+      },
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "storm_surge_geometry": "omrade",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Kristiansand",
+        "kommunenummer": "4204",
+        "storm_surge_area": "stormflo200ar_klimaarna",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "EXISTS storm-surge intersection",
+        "EXISTS 200-year flood-zone intersection",
+        "ORDER BY bygningid ASC",
+        "LIMIT 10"
+      ],
+      "crs_handling": "Building geometry uses SRID 25833 and storm-surge geometry uses SRID 25832 in the current local database. Storm-surge geometry must be transformed to SRID 25833 before intersection. Flood-zone geometry is used in the compatible local CRS.",
+      "expected_sql_logic": "SELECT b.bygningid FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b WHERE b.kommunenummer = '4204' AND b.representasjonspunkt IS NOT NULL AND EXISTS (SELECT 1 FROM stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna s WHERE ST_Intersects(b.representasjonspunkt, ST_Transform(s.omrade, 25833))) AND EXISTS (SELECT 1 FROM flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f WHERE f.gjentaksintervall = 200 AND ST_Intersects(b.representasjonspunkt, f.omrade)) ORDER BY b.bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "stormflohavniva_fa23a1affeea4d26adf1af29afd20ef9.stormflo200ar_klimaarna": [
+          "stormflohavniva_03618ac2d6ba4ba0ae13e7ead6caf572.stormflo200ar_klimaarna"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "stormflomhavniva",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Kristiansand buildings from matrikkelenbygning.bygning where kommunenummer = '4204' were filtered to buildings that intersect both 200-year storm-surge areas from stormflomhavniva.stormflo200ar_klimaarna and 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. EXISTS was used for both spatial conditions to avoid duplicate bygningid values when buildings intersect multiple polygons.",
+      "verified_storm_surge_layer": "stormflo200ar_klimaarna",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_deduplication_method": "EXISTS conditions / distinct building membership",
+      "verified_sort_order": "bygningid ASC",
+      "verified_crs": {
+        "building_srid": 25833,
+        "storm_surge_srid": 25832,
+        "storm_surge_transform_applied": "ST_Transform(omrade, 25833)"
+      },
+      "verified_count_result": 62
+    }
+  },
+  "B26": {
+    "question": "Find 10 buildings in Drammen municipality that intersect 200-year flood zones, sorted by distance to the nearest quick-clay hazard zone ascending.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "bygningid",
+    "canonical_answer": [
+      {
+        "bygningid": "105702692",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105711437",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105718137",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105723845",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105727059",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105746316",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105781247",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105781249",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105781257",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "bygningid": "105781267",
+        "distance_to_quickclay_m": 0.0
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 building records for Drammen municipality that intersect 200-year flood zones, sorted by shortest distance to the nearest quick-clay release zone ascending and then bygningid ascending. In the verified result, all top 10 distances are 0.0 metres, so bygningid ascending is the deterministic tie-breaker.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "flomsoner",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "flood_zone_geometry": "omrade",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "flood_return_period": "gjentaksintervall = 200",
+        "quick_clay_hazard_area": "utlosningomr"
+      },
+      "required_columns": [
+        "bygningid",
+        "kommunenummer",
+        "representasjonspunkt",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects and ST_Distance",
+      "analytical_operations": [
+        "EXISTS 200-year flood-zone intersection",
+        "MIN(ST_Distance(building_geometry, quick_clay_geometry))",
+        "GROUP BY bygningid",
+        "ORDER BY distance ASC, bygningid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "WITH flood_buildings AS (SELECT DISTINCT b.bygningid, b.representasjonspunkt FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b WHERE b.kommunenummer = '3301' AND b.representasjonspunkt IS NOT NULL AND EXISTS (SELECT 1 FROM flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f WHERE f.gjentaksintervall = 200 AND ST_Intersects(b.representasjonspunkt, f.omrade))), distances AS (SELECT fb.bygningid, MIN(ST_Distance(fb.representasjonspunkt, k.omrade)) AS dist_to_quickclay FROM flood_buildings fb JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON TRUE GROUP BY fb.bygningid) SELECT bygningid, dist_to_quickclay FROM distances ORDER BY dist_to_quickclay ASC, bygningid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "flomsoner",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Drammen buildings from matrikkelenbygning.bygning where kommunenummer = '3301' were first filtered to buildings that intersect 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. For each of those flood-intersecting buildings, the minimum distance to quick-clay release zones from kvikkleire.utlosningomr was calculated using ST_Distance. Results were sorted by distance ascending and bygningid ascending.",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_distance_operation": "MIN(ST_Distance(...))",
+      "verified_sort_order": "distance ASC, bygningid ASC",
+      "verified_tie_breaker": "bygningid ASC because all top 10 distances are 0.0",
+      "verified_flood_building_count": 1247
+    }
+  },
+  "B27": {
+    "question": "Find 10 parcels in Drammen municipality larger than 5000 m² that intersect 200-year flood zones, sorted by distance to the nearest quick-clay hazard zone ascending.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "teigid",
+    "canonical_answer": [
+      {
+        "teigid": "105832341",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105832582",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105832831",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105833689",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105836418",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105836741",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105837508",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105838155",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105839257",
+        "distance_to_quickclay_m": 0.0
+      },
+      {
+        "teigid": "105839416",
+        "distance_to_quickclay_m": 0.0
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 parcel records for Drammen municipality where lagretberegnetareal > 5000 and the parcel intersects 200-year flood zones, sorted by shortest distance to the nearest quick-clay release zone ascending and then teigid ascending. In the verified result, all top 10 distances are 0.0 metres, so teigid ascending is the deterministic tie-breaker.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "flood_zone_geometry": "omrade",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Drammen",
+        "kommunenummer": "3301",
+        "minimum_parcel_area_m2": "lagretberegnetareal > 5000",
+        "flood_return_period": "gjentaksintervall = 200",
+        "quick_clay_hazard_area": "utlosningomr"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "lagretberegnetareal",
+        "geom",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects and ST_Distance",
+      "analytical_operations": [
+        "EXISTS 200-year flood-zone intersection",
+        "MIN(ST_Distance(parcel_geometry, quick_clay_geometry))",
+        "GROUP BY teigid",
+        "ORDER BY distance ASC, teigid ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "WITH flood_parcels AS (SELECT DISTINCT t.teigid, t.geom FROM matrikkeleneiendomskartteig_gis.teig t WHERE t.kommunenummer = '3301' AND t.lagretberegnetareal > 5000 AND t.geom IS NOT NULL AND EXISTS (SELECT 1 FROM flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f WHERE f.gjentaksintervall = 200 AND ST_Intersects(t.geom, f.omrade))), distances AS (SELECT fp.teigid, MIN(ST_Distance(fp.geom, k.omrade)) AS dist_to_quickclay FROM flood_parcels fp JOIN kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k ON TRUE GROUP BY fp.teigid) SELECT teigid, dist_to_quickclay FROM distances ORDER BY dist_to_quickclay ASC, teigid ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ]
+      },
+      "accepted_column_expression_equivalents": {
+        "lagretberegnetareal": [
+          "ST_Area(omrade)"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "flomsoner",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Drammen parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '3301' and lagretberegnetareal > 5000 were first filtered to parcels that intersect 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. For each of those flood-intersecting parcels, the minimum distance to quick-clay release zones from kvikkleire.utlosningomr was calculated using ST_Distance. Results were sorted by distance ascending and teigid ascending.",
+      "verified_area_field": "lagretberegnetareal",
+      "verified_local_area_expression": "ST_Area(omrade)",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_distance_operation": "MIN(ST_Distance(...))",
+      "verified_sort_order": "distance ASC, teigid ASC",
+      "verified_tie_breaker": "teigid ASC because all top 10 distances are 0.0",
+      "verified_flood_parcel_count": 341
+    }
+  },
+  "B28": {
+    "question": "Find 10 buildings in Trondheim municipality that intersect quick-clay hazard areas with high risk class and are closest to the municipality centroid, sorted by shortest distance first.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "bygningsnummer",
+    "canonical_answer": [
+      {
+        "bygningsnummer": "182485136",
+        "bygningid": "277336963",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4406.834595257597
+      },
+      {
+        "bygningsnummer": "182485128",
+        "bygningid": "277336959",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4429.188397784499
+      },
+      {
+        "bygningsnummer": "182800457",
+        "bygningid": "277459389",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4440.807551049043
+      },
+      {
+        "bygningsnummer": "182485101",
+        "bygningid": "277336955",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4457.840060102913
+      },
+      {
+        "bygningsnummer": "301216961",
+        "bygningid": "6457434609",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4484.752264239285
+      },
+      {
+        "bygningsnummer": "301318347",
+        "bygningid": "6472091302",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4485.786307041089
+      },
+      {
+        "bygningsnummer": "300539797",
+        "bygningid": "543438136",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4495.252979960095
+      },
+      {
+        "bygningsnummer": "300811474",
+        "bygningid": "6367243153",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4496.734285846883
+      },
+      {
+        "bygningsnummer": "182485225",
+        "bygningid": "277336999",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4498.45288253031
+      },
+      {
+        "bygningsnummer": "300811473",
+        "bygningid": "6367243151",
+        "municipality": "TRONDHEIM",
+        "distance_to_centroid_m": 4501.867572590303
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact first 10 building records for Trondheim municipality that intersect quick-clay release zones with high risk class, sorted by shortest distance to the Trondheim municipality centroid ascending. The expected output identifier is bygningsnummer, not bygningid. High risk class is defined as skredrisikokvikkleireklasse = 5.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "kommuner",
+        "kvikkleire"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "kommuner_627ee106072240e99d2b21ec4717bf01.kommune",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr"
+      ],
+      "id_column": "bygningsnummer",
+      "secondary_id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "municipality_geometry": "omrade",
+        "quick_clay_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Trondheim",
+        "kommunenummer": "5001",
+        "quick_clay_hazard_area": "utlosningomr",
+        "high_risk_class": "skredrisikokvikkleireklasse = 5"
+      },
+      "required_columns": [
+        "bygningsnummer",
+        "bygningid",
+        "kommunenummer",
+        "kommunenavn",
+        "representasjonspunkt",
+        "omrade",
+        "skredrisikokvikkleireklasse"
+      ],
+      "spatial_operation": "ST_Intersects and ST_Distance",
+      "analytical_operations": [
+        "ST_Centroid(municipality_geometry)",
+        "EXISTS quick-clay intersection",
+        "ST_Distance(building_geometry, municipality_centroid)",
+        "ORDER BY distance ASC, bygningsnummer ASC",
+        "LIMIT 10"
+      ],
+      "expected_sql_logic": "WITH municipality_centroid AS (SELECT ST_Centroid(omrade) AS centroid FROM kommuner_627ee106072240e99d2b21ec4717bf01.kommune WHERE kommunenummer = '5001'), valid_buildings AS (SELECT DISTINCT b.bygningsnummer, b.bygningid, b.kommunenavn, b.representasjonspunkt FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b WHERE b.kommunenummer = '5001' AND b.representasjonspunkt IS NOT NULL AND EXISTS (SELECT 1 FROM kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k WHERE k.skredrisikokvikkleireklasse = '5' AND ST_Intersects(b.representasjonspunkt, k.omrade))) SELECT vb.bygningsnummer, vb.bygningid, vb.kommunenavn, ST_Distance(vb.representasjonspunkt, mc.centroid) AS dist_to_centroid FROM valid_buildings vb CROSS JOIN municipality_centroid mc ORDER BY dist_to_centroid ASC, vb.bygningsnummer ASC LIMIT 10;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "kommuner",
+        "kvikkleire"
+      ],
+      "verified_sql_logic": "Trondheim buildings from matrikkelenbygning.bygning where kommunenummer = '5001' were filtered to buildings that intersect high-risk quick-clay release zones from kvikkleire.utlosningomr where skredrisikokvikkleireklasse = 5. The Trondheim municipality centroid was calculated using ST_Centroid on kommuner.kommune.omrade. For each valid building, distance to the municipality centroid was calculated using ST_Distance and results were sorted by distance ascending.",
+      "verified_output_identifier": "bygningsnummer",
+      "verified_secondary_identifier": "bygningid",
+      "verified_municipality_layer": "kommune",
+      "verified_centroid_operation": "ST_Centroid(omrade)",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_high_risk_class": "skredrisikokvikkleireklasse = 5",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_distance_operation": "ST_Distance(building representasjonspunkt, municipality centroid)",
+      "verified_sort_order": "distance ASC, bygningsnummer ASC",
+      "verified_count_result": 76
+    }
+  },
+  "B29": {
+    "question": "List the five 1 km grid cells in Lillestrøm municipality with the highest number of parcels located in quick-clay hazard areas, sorted by parcel count descending.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "ssbid1000m",
+    "canonical_answer": [
+      {
+        "ssbid1000m": "22830006660000",
+        "parcel_count": 351
+      },
+      {
+        "ssbid1000m": "22760006653000",
+        "parcel_count": 308
+      },
+      {
+        "ssbid1000m": "22840006661000",
+        "parcel_count": 278
+      },
+      {
+        "ssbid1000m": "22770006653000",
+        "parcel_count": 160
+      },
+      {
+        "ssbid1000m": "22900006659000",
+        "parcel_count": 151
+      }
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return the exact top five 1 km grid cells in Lillestrøm municipality with the highest number of distinct parcels located in quick-clay release zones. The model must count parcels per grid cell, not grid cells directly intersecting quick-clay areas. Results must be sorted by parcel_count descending, with ssbid1000m ascending as deterministic tie-breaker if needed.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire",
+        "statistiskrutenett1km"
+      ],
+      "tables": [
+        "matrikkeleneiendomskartteig_gis.teig",
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr",
+        "befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km"
+      ],
+      "id_column": "ssbid1000m",
+      "secondary_id_column": "teigid",
+      "geometry_columns": {
+        "parcel_geometry": "geom",
+        "quick_clay_geometry": "omrade",
+        "grid_geometry": "omrade"
+      },
+      "filters": {
+        "municipality": "Lillestrøm",
+        "kommunenummer": "3205",
+        "quick_clay_hazard_area": "utlosningomr"
+      },
+      "required_columns": [
+        "teigid",
+        "kommunenummer",
+        "geom",
+        "omrade",
+        "ssbid1000m"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "Filter parcels by municipality",
+        "EXISTS quick-clay intersection",
+        "Assign quick-clay parcels to 1 km grid cells",
+        "COUNT(DISTINCT teigid) per ssbid1000m",
+        "ORDER BY parcel_count DESC, ssbid1000m ASC",
+        "LIMIT 5"
+      ],
+      "expected_sql_logic": "WITH quick_clay_parcels AS (SELECT DISTINCT p.teigid, p.geom FROM matrikkeleneiendomskartteig_gis.teig p WHERE p.kommunenummer = '3205' AND p.geom IS NOT NULL AND EXISTS (SELECT 1 FROM kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr k WHERE ST_Intersects(p.geom, k.omrade))), parcel_grid AS (SELECT DISTINCT g.ssbid1000m, q.teigid FROM quick_clay_parcels q JOIN befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km g ON ST_Intersects(q.geom, g.omrade)) SELECT ssbid1000m, COUNT(DISTINCT teigid) AS parcel_count FROM parcel_grid GROUP BY ssbid1000m ORDER BY parcel_count DESC, ssbid1000m ASC LIMIT 5;",
+      "accepted_table_equivalents": {
+        "matrikkeleneiendomskartteig_gis.teig": [
+          "matrikkeleneiendomskartteig_36313fab8faa42d99cb779d86d1ca26d.teig"
+        ],
+        "kvikkleire_87067f98e29a47d4901328f3a926a515.utlosningomr": [
+          "kvikkleire_175185730654415d8841436d0d6999f2.utlosningomr"
+        ],
+        "befolkningsstatistikkrutenett1km2025_338618.befolkningparuter1km": [
+          "public.statistiskrutenett1km"
+        ]
+      },
+      "accepted_geometry_column_equivalents": {
+        "parcel_geometry": [
+          "omrade"
+        ],
+        "grid_geometry": [
+          "geom"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkeleneiendomskartteig",
+        "kvikkleire",
+        "statistiskrutenett1km"
+      ],
+      "verified_sql_logic": "Lillestrøm parcels from matrikkeleneiendomskartteig_gis.teig where kommunenummer = '3205' were first filtered to parcels that intersect quick-clay release zones from kvikkleire.utlosningomr. These quick-clay parcels were then spatially assigned to 1 km grid cells from befolkningparuter1km, and distinct teigid values were counted per ssbid1000m. Results were sorted by parcel_count descending.",
+      "verified_quick_clay_layer": "utlosningomr",
+      "verified_grid_layer": "befolkningparuter1km",
+      "verified_grid_id_column": "ssbid1000m",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_operation": "COUNT(DISTINCT teigid) per ssbid1000m",
+      "verified_sort_order": "parcel_count DESC, ssbid1000m ASC",
+      "verified_quick_clay_parcel_count": 2840
+    }
+  },
+  "B30": {
+    "question": "List the five municipalities in Finnmark county with the highest number of buildings in 200-year flood zones, sorted by count descending.",
+    "status": "active",
+    "answer_type": "top_k_records",
+    "id_field": "kommunenummer",
+    "canonical_answer": [
+      {
+        "kommunenummer": "5601",
+        "kommunenavn": "ALTA",
+        "building_count": 373
+      },
+      {
+        "kommunenummer": "5610",
+        "kommunenavn": "KARASJOK",
+        "building_count": 125
+      },
+      {
+        "kommunenummer": "5612",
+        "kommunenavn": "KAUTOKEINO",
+        "building_count": 107
+      },
+      {
+        "kommunenummer": "5628",
+        "kommunenavn": "TANA",
+        "building_count": 70
+      },
+      {
+        "kommunenummer": "5603",
+        "kommunenavn": "HAMMERFEST",
+        "building_count": 20
+      }
+    ],
+    "accepted_answers": [
+      [
+        {
+          "kommunenummer": "5601",
+          "kommunenavn": "ALTA",
+          "building_count": 373
+        },
+        {
+          "kommunenummer": "5610",
+          "kommunenavn": "KARASJOK",
+          "building_count": 126
+        },
+        {
+          "kommunenummer": "5612",
+          "kommunenavn": "KAUTOKEINO",
+          "building_count": 107
+        },
+        {
+          "kommunenummer": "5628",
+          "kommunenavn": "TANA",
+          "building_count": 70
+        },
+        {
+          "kommunenummer": "5605",
+          "kommunenavn": "SØR-VARANGER",
+          "building_count": 10
+        }
+      ]
+    ],
+    "order_matters": true,
+    "semantic_correctness_rule": "Model must return an accepted top five municipality list for Finnmark county with the highest number of distinct buildings that intersect 200-year flood zones. Finnmark is identified by kommunenummer LIKE '56%'. Buildings must be counted using COUNT(DISTINCT bygningid), not COUNT(*), because one building may intersect multiple flood polygons. Results must be sorted by building_count descending. The canonical database returns HAMMERFEST as the fifth municipality; the observed local database/import version returns SØR-VARANGER as the fifth municipality.",
+    "layer2_requirements": {
+      "databases": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "tables": [
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning",
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal"
+      ],
+      "id_column": "kommunenummer",
+      "secondary_id_column": "bygningid",
+      "geometry_columns": {
+        "building_geometry": "representasjonspunkt",
+        "flood_zone_geometry": "omrade"
+      },
+      "filters": {
+        "county": "Finnmark",
+        "county_filter": "kommunenummer LIKE '56%'",
+        "flood_return_period": "gjentaksintervall = 200"
+      },
+      "required_columns": [
+        "kommunenummer",
+        "kommunenavn",
+        "bygningid",
+        "representasjonspunkt",
+        "omrade",
+        "gjentaksintervall"
+      ],
+      "spatial_operation": "ST_Intersects",
+      "analytical_operations": [
+        "Filter buildings by Finnmark municipality numbers",
+        "Filter flood zones by gjentaksintervall = 200",
+        "Spatial join buildings with 200-year flood zones",
+        "COUNT(DISTINCT bygningid) per kommunenummer and kommunenavn",
+        "GROUP BY kommunenummer, kommunenavn",
+        "ORDER BY building_count DESC, kommunenummer ASC",
+        "LIMIT 5"
+      ],
+      "expected_sql_logic": "SELECT b.kommunenummer, b.kommunenavn, COUNT(DISTINCT b.bygningid) AS building_count FROM matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning b JOIN flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal f ON ST_Intersects(b.representasjonspunkt, f.omrade) WHERE b.kommunenummer LIKE '56%' AND b.representasjonspunkt IS NOT NULL AND f.gjentaksintervall = 200 GROUP BY b.kommunenummer, b.kommunenavn ORDER BY building_count DESC, b.kommunenummer ASC LIMIT 5;",
+      "accepted_table_equivalents": {
+        "matrikkelenbygning_e58ed5b5abd74bc1a42ff55d569f0cf4.bygning": [
+          "matrikkelenbygning_fe504ac373564e10b85865ef2a507c63.bygning"
+        ],
+        "flomsoner_92001766ec964ab8b545fef0a00e6d23.flomareal": [
+          "flomsoner_76d14d5fe2fd4a29bfffc266fdcdd820.flomareal"
+        ]
+      }
+    },
+    "verification": {
+      "database_used": [
+        "matrikkelenbygning",
+        "flomsoner"
+      ],
+      "verified_sql_logic": "Buildings from matrikkelenbygning.bygning where kommunenummer LIKE '56%' were spatially joined with 200-year flood zones from flomsoner.flomareal where gjentaksintervall = 200. Distinct bygningid values were counted per municipality to avoid duplicate building counts from multiple flood polygons. Results were grouped by kommunenummer and kommunenavn and sorted by building_count descending.",
+      "verified_county_filter": "kommunenummer LIKE '56%'",
+      "verified_flood_layer": "flomareal",
+      "verified_flood_return_period": "gjentaksintervall = 200",
+      "verified_spatial_predicate": "ST_Intersects",
+      "verified_count_operation": "COUNT(DISTINCT bygningid)",
+      "verified_grouping": "kommunenummer, kommunenavn",
+      "verified_sort_order": "building_count DESC, kommunenummer ASC",
+      "verified_total_finnmark_flood_buildings": 705
+    }
+  }
+}

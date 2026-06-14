@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Generated data, reports, and large local artifacts
+thesis_results/
+*.csv
+*.tex
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.zip
+*.log
+*.aux
+*.out
+*.toc
+
+# Local evaluation output folders
+backend/evaluation/research_reports/
+run_*/
