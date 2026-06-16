@@ -3,21 +3,46 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
     volumes:
       - .:/workspaces/agentic-gis-benchmark:cached
-    command: sleep infinity
     environment:
-      
-      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
-      AZURE_OPENAI_KEY: ${AZURE_OPENAI_KEY}
-      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION}
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
+      AZURE_OPENAI_ENDPOINT: "${AZURE_OPENAI_ENDPOINT:-}"
+      AZURE_OPENAI_KEY: "${AZURE_OPENAI_KEY:-}"
+      AZURE_OPENAI_API_VERSION: "${AZURE_OPENAI_API_VERSION:-}"
+      AZURE_FOUNDRY_ENDPOINT: "${AZURE_FOUNDRY_ENDPOINT:-}"
+      AZURE_FOUNDRY_KEY: "${AZURE_FOUNDRY_KEY:-}"
+      AZURE_OPENAI_EMBEDDING_DEPLOYMENT: "${AZURE_OPENAI_EMBEDDING_DEPLOYMENT:-text-embedding-3-large}"
+      AZURE_STORAGE_CONNECTION_STRING: "${AZURE_STORAGE_CONNECTION_STRING:-}"
+      AZURE_STORAGE_CONTAINER: "${AZURE_STORAGE_CONTAINER:-llm-gis-evaluation-results}"
+      EMBEDDINGS_MIN_SCORE: "${EMBEDDINGS_MIN_SCORE:-0.20}"
+      EMBEDDINGS_TOP_K: "${EMBEDDINGS_TOP_K:-5}"
+      ORS_API_KEY: "${ORS_API_KEY:-}"
+      PGCONN_AKTSOMHETSKART_JORD_FLOMSKRED_GIS: "${PGCONN_AKTSOMHETSKART_JORD_FLOMSKRED_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_AREALRESSURSKART_AR50: "${PGCONN_AREALRESSURSKART_AR50:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_BRANNSTASJONER_GIS: "${PGCONN_BRANNSTASJONER_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_FLOMAKTSOMRADER_GIS: "${PGCONN_FLOMAKTSOMRADER_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_FLOMSONER_GIS: "${PGCONN_FLOMSONER_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_FYLKER_GIS: "${PGCONN_FYLKER_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_KOMMUNER_GIS: "${PGCONN_KOMMUNER_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_KVIKKLEIRE_GIS: "${PGCONN_KVIKKLEIRE_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_MATRIKKEL: "${PGCONN_MATRIKKEL:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_MATRIKKELENEIENDOMSKARTTEIG_GIS: "${PGCONN_MATRIKKELENEIENDOMSKARTTEIG_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_SNOSKREDAKTSOMHETSKART_GIS: "${PGCONN_SNOSKREDAKTSOMHETSKART_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_STATISTISKRUTENETT1KM_GIS: "${PGCONN_STATISTISKRUTENETT1KM_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_STEDSNAVN_GIS: "${PGCONN_STEDSNAVN_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_STORMFLOHAVNIVA_GIS: "${PGCONN_STORMFLOHAVNIVA_GIS:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_STRING: "${PGCONN_STRING:-postgresql://gis:gis@db:5432/gis}"
+      PGCONN_TRAFIKKMENGDE_GIS: "${PGCONN_TRAFIKKMENGDE_GIS:-postgresql://gis:gis@db:5432/gis}"
       POSTGRES_DB: gis
-      POSTGRES_USER: gis
+      POSTGRES_HOST: db
       POSTGRES_PASSWORD: gis
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: gis
+      STORAGE_VERSION: "${STORAGE_VERSION:-statistical_repeated_runs}"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: postgis/postgis:16-3.4
@@ -30,6 +55,11 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gis -d gis"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pgdata:

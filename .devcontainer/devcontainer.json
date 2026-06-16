@@ -1,9 +1,12 @@
 {
   "name": "agentic-gis-benchmark",
-  "dockerComposeFile": ["../docker-compose.devcontainer.yml"],
+  "dockerComposeFile": [
+    "../docker-compose.devcontainer.yml"
+  ],
   "service": "app",
   "workspaceFolder": "/workspaces/agentic-gis-benchmark",
   "shutdownAction": "stopCompose",
+  "postCreateCommand": "uv sync --frozen",
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
